@@ -22,5 +22,10 @@ public class TestController {
         return "<h1>HELLO WORLD</h1>";
     }
 
+    @GetMapping("/test4")
+    public String test4(){
+        return "<h1>TEST4</h1>";
+    }
+
 
 }
