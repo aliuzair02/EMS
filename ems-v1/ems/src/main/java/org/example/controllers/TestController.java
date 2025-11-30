@@ -17,4 +17,10 @@ public class TestController {
         return x;
     }
 
+    @GetMapping("/test3")
+    public String test3(){
+        return "<h1>HELLO WORLD</h1>";
+    }
+
+
 }
