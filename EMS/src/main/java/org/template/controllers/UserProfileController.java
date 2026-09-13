@@ -6,9 +6,9 @@ import org.template.common.controllers.BaseController;
 import org.template.common.models.ResponseObject;
 import org.template.common.services.ObjectService;
 import org.template.managers.UserProfileManager;
-import org.template.models.UserProfileDO;
-import org.template.models.UserProfileRequestObject;
-import org.template.models.UserProfileVO;
+import org.template.models.DO.UserProfileDO;
+import org.template.models.RO.UserProfileRequestObject;
+import org.template.models.VO.UserProfileVO;
 
 @RestController
 @RequestMapping("/user")
@@ -20,7 +20,6 @@ public class UserProfileController extends BaseController {
         this.userProfileManager = userProfileManager;
     }
 
-    // Basic Create & Update
     @PostMapping("/save")
     public ResponseEntity<ResponseObject> save(@RequestBody UserProfileRequestObject userProfileRequestObject) {
 
@@ -35,14 +34,12 @@ public class UserProfileController extends BaseController {
         return ObjectService.getResponseBody(userProfileVO);
     }
 
-    // Basic Read
     @GetMapping("/getAll")
     public ResponseEntity<ResponseObject> getAll() {
 
         return ObjectService.getResponseBody(userProfileManager.getAllUserProfiles());
     }
 
-    // Basic Delete
     @PostMapping("/delete")
     public ResponseEntity<ResponseObject> delete(@RequestBody UserProfileRequestObject userProfileRequestObject) {
 

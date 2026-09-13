@@ -4,9 +4,10 @@ import org.springframework.stereotype.Repository;
 import org.template.common.constants.RecordStatusConstant;
 import org.template.common.models.QueryParameter;
 import org.template.common.services.ObjectService;
-import org.template.models.UserProfileDO;
-import org.template.models.UserProfileVO;
-import org.template.services.UserProfileValidator;
+import org.template.models.DO.UserProfileDO;
+import org.template.models.VO.UserProfileVO;
+import org.template.services.validator.UserProfileValidator;
+import org.template.tables.TbProfile;
 import org.template.tables.TbUser;
 
 import java.util.ArrayList;
@@ -26,6 +27,15 @@ public class UserProfileDaoJpa extends DaoJpa{
         for (TbUser tbUser : tbUserList) {
             UserProfileDO userProfileDO = new UserProfileDO();
             ObjectService.copyProperties(tbUser, userProfileDO);
+            userProfileDO.setUserId(tbUser.getPkUserId());
+
+            TbProfile tbProfile = getById(TbProfile.class, tbUser.getFkProfileId().getPkProfileId());
+
+            if (Objects.nonNull(tbProfile) && Objects.nonNull(tbProfile.getPkProfileId())) {
+                ObjectService.copyProperties(tbProfile, userProfileDO);
+                userProfileDO.setProfileId(tbProfile.getPkProfileId());
+            }
+
             userProfileDOList.add(userProfileDO);
 
             if (Objects.isNull(userProfileVO.getUserProfileDO())) {
@@ -45,7 +55,7 @@ public class UserProfileDaoJpa extends DaoJpa{
         UserProfileDO userProfileDO = userProfileVO.getUserProfileDO();
 
         List<QueryParameter> paramList = new ArrayList<>();
-        String jpaQlStr = "SELECT new org.template.models.UserProfileDO(" +
+        String jpaQlStr = "SELECT new org.template.models.DO.UserProfileDO(" +
                 "u.username, u.password)" +
                 " FROM TbUser as u" +
                 " WHERE u.statusDb = " +

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.template.common.constants.MessageConstants;
 import org.template.common.managers.BaseManager;
 import org.template.common.services.ObjectService;
-import org.template.models.UserProfileVO;
+import org.template.models.VO.UserProfileVO;
 import org.template.services.UserProfileService;
 
 @Service
@@ -39,6 +39,8 @@ public class UserProfileManager extends BaseManager {
     }
 
     public UserProfileVO getAllUserProfiles(){
+
+        generateLogId();
 
         infoLog("Process getAllUserProfiles Started");
 
@@ -102,13 +104,13 @@ public class UserProfileManager extends BaseManager {
 
         try {
 
-            infoLog("Process login Started");
+            infoLog("Process getUserDetails Started");
 
             userProfileService.getUserDetails(userProfileVO);
 
             ObjectService.setStatusVO(userProfileVO, true, MessageConstants.successMessage);
 
-            infoLog("Process login Ended");
+            infoLog("Process getUserDetails Ended");
 
         } catch (Exception e) {
             errorLog(e.getMessage());

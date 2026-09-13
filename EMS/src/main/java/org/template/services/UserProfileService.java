@@ -6,8 +6,9 @@ import org.springframework.util.CollectionUtils;
 import org.template.common.services.BaseService;
 import org.template.common.services.ObjectService;
 import org.template.dao.UserProfileDaoJpa;
-import org.template.models.UserProfileDO;
-import org.template.models.UserProfileVO;
+import org.template.models.DO.UserProfileDO;
+import org.template.models.VO.UserProfileVO;
+import org.template.services.validator.UserProfileValidator;
 import org.template.tables.TbProfile;
 import org.template.tables.TbUser;
 
