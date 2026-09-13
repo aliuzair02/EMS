@@ -20,7 +20,7 @@ public class UserProfileManager extends BaseManager {
 
         generateLogId();
 
-        try{
+        try {
 
             infoLog("Process saveUser Started");
 
