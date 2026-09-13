@@ -7,8 +7,10 @@ import org.template.common.models.ResponseObject;
 import org.template.common.services.ObjectService;
 import org.template.managers.RoleManager;
 import org.template.models.DO.RoleDO;
+import org.template.models.RO.MasterRequestObject;
 import org.template.models.RO.RoleRequestObject;
 import org.template.models.VO.RoleVO;
+import org.template.models.VO.UserRoleVO;
 
 @RestController
 @RequestMapping("/admin/role")
@@ -39,6 +41,16 @@ public class RoleController extends BaseController {
         roleManager.saveRole(roleVO);
 
         return ObjectService.getResponseBody(roleVO);
+    }
+
+    @PostMapping("/assignRoles")
+    public ResponseEntity<ResponseObject> assignRoles(@RequestBody MasterRequestObject masterRequestObject) throws Exception {
+
+        UserRoleVO userRoleVO = masterRequestObject.getUserRoleVO();
+
+        roleManager.assignRoles(userRoleVO);
+
+        return ObjectService.getResponseBody(userRoleVO);
     }
 
 }

@@ -37,4 +37,12 @@ public class RoleDaoJpa extends DaoJpa{
 
     }
 
+    public void getRoleByRolename(RoleVO roleVO) {
+
+        if (Objects.isNull(roleVO) || Objects.isNull(roleVO.getRoleDO()) || Objects.isNull(roleVO.getRoleDO().getRoleName())) {
+
+        }
+
+    }
+
 }
